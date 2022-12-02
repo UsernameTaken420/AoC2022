@@ -1,25 +1,30 @@
 def roundResult(opPlay, mePlay):
     match opPlay:
-        case "A":
+        case "A": #rock
             opPlay = 1
-        case "B":
+        case "B": #paper
             opPlay = 2
-        case "C":
+        case "C": #scissors
             opPlay = 3
     match mePlay:
-        case "X":
+        case "X": #rock
             points = 1
-        case "Y":
+        case "Y": #paper
             points = 2
-        case "Z":
+        case "Z": #scissors
             points = 3
-    if (points > opPlay):
+    if (opPlay == 3 and points == 1):
         points += 6
-    elif (points == opPlay):
-        points += 3
+    elif (opPlay == 1 and points == 3):
+        points += 0
+    else:
+        if (opPlay == points):
+            points += 3
+        elif (opPlay < points):
+            points += 6
     return points
 
-file = open("testInput.txt", "r")
+file = open("input.txt", "r")
 totalScore = 0
 for round in file:
     totalScore += roundResult(round[0], round[2])
